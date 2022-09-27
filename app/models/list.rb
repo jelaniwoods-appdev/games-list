@@ -14,6 +14,8 @@ class List < ApplicationRecord
   validates :name, presence: true
   before_save :set_slug
 
+  has_many :games
+
   def set_slug
     slug = name.paramaterize
   end
