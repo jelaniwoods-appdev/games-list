@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -11,7 +12,7 @@ game_list = List.find_or_create_by(
   name: 'Games to Play'
 )
 
-p game_list.errors.full_messages
+Rails.logger.debug game_list.errors.full_messages
 
 game_list.games.find_or_create_by(
   name: 'Life Is Strange: True Colors',
@@ -97,5 +98,5 @@ game_list.games.find_or_create_by(
   video_trailer: 'https://www.youtube.com/watch?v=pHeiyenYcaY'
 )
 
-p game_list.games.map(&:position)
-p game_list.games.count
+Rails.logger.debug game_list.games.map(&:position)
+Rails.logger.debug game_list.games.count

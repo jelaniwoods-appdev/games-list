@@ -27,13 +27,13 @@
 
   <div class="ps-2 d-block">
     <% unless game.first? %>
-      <%= link_to "move_up_item_path(game)", data: { 'turbo-method': :patch }, class: "text-secondary d-block", style: "font-size: 1.3em;", "data-toggle": "collapse", role: "button", "aria-expanded": false do %>
+      <%= link_to move_up_game_path(game), data: { 'turbo-method': :patch }, class: "text-secondary d-block", style: "font-size: 1.3em;", "data-toggle": "collapse", role: "button", "aria-expanded": false do %>
         <i class="fas fa-caret-up"></i>
       <% end %>
     <% end %>
 
     <% unless game.last? %>
-      <%= link_to "move_down_item_path(game)", data: { 'turbo-method': :patch }, class: "text-secondary d-block", style: "font-size: 1.3em;", "data-toggle": "collapse", role: "button", "aria-expanded": false do %>
+      <%= link_to move_down_game_path(game), data: { 'turbo-method': :patch }, class: "text-secondary d-block", style: "font-size: 1.3em;", "data-toggle": "collapse", role: "button", "aria-expanded": false do %>
         <i class="fas fa-caret-down"></i>
       <% end %>
     <% end %>

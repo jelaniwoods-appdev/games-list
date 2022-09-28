@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[show edit update destroy]
+  before_action :set_game, only: %i[show edit update move_up move_down destroy]
 
   # GET /games
   def index
@@ -36,6 +36,22 @@ class GamesController < ApplicationController
       redirect_to @game, notice: 'Game was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def move_down
+    @game.move_lower
+    @list = @game.list
+    respond_to do |format|
+      format.turbo_stream {}
+    end
+  end
+
+  def move_up
+    @game.move_higher
+    @list = @game.list
+    respond_to do |format|
+      format.turbo_stream {}
     end
   end
 
