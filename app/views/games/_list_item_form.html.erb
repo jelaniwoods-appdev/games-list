@@ -1,3 +1,4 @@
+<%= turbo_frame_tag dom_id(game) do %>
 <% was_validated = game.errors.any? %>
 
 <% form_html_options = { novalidate: true, class: "mb-3" } %>
@@ -106,5 +107,8 @@
     </div>
 
     <%= f.button class: "btn btn-outline-secondary btn-block" %>
+    <%= link_to "Cancel", game.list, class: "link-danger" %>
+
   <% end %>
 </div>
+<% end %>

@@ -1,4 +1,6 @@
-<div class="list-group-item d-flex align-items-center justify-content-between">
+<%= turbo_frame_tag dom_id(game) do %>
+<div id="<%= dom_id(game) %>" class="list-group-item d-flex align-items-center justify-content-between">
+
   <div class="flex-shrink-0">
     <%#= link_to game.video_trailer, target: "_blank" do %>
     <%# end %>
@@ -15,11 +17,9 @@
     <p><%= game.description %></p>
   </div>
   <div>
-    <%= turbo_frame_tag dom_id(game) do %>
-      <%= link_to edit_game_url(game), class: "link-success d-block" do %>
+      <%= link_to edit_game_path(game), class: "link-success d-block" do %>
         <i class="fas fa-edit"></i>
       <% end %>
-    <% end %>
     <%= link_to game, data: { "turbo-method": :delete, confirm: "Do you really want to delete this item?" }, class: "link-danger" do %>
       <i class="fas fa-times"></i>
     <% end %>
@@ -45,5 +45,6 @@
       <%#= game.youtube_embed.html_safe %>
     </div>
   </div>
-  
+
 </div>
+<% end %>
