@@ -26,9 +26,9 @@ class GamesController < ApplicationController
     if @game.save
       respond_to do |format|
         format.turbo_stream {}
-        format.html {
+        format.html do
           redirect_to @game, notice: 'Game was successfully created.'
-        }
+        end
       end
     else
       render :new, status: :unprocessable_entity
@@ -65,9 +65,9 @@ class GamesController < ApplicationController
     @game.destroy
     respond_to do |format|
       format.turbo_stream {}
-      format.html{
+      format.html do
         redirect_to games_url, notice: 'Game was successfully destroyed.'
-      }
+      end
     end
   end
 

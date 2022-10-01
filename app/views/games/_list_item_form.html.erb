@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(game) do %>
 <% was_validated = game.errors.any? %>
 
-<% form_html_options = { novalidate: true, class: "mb-3", data: { turbo_frame: dom_id(game)} } %>
+<% form_html_options = { novalidate: true, class: "mb-3", data: { turbo_frame: dom_id(game)}, enctype: "multipart/form-data" } %>
 
 <div class="list-group-item" id="list_item_form">
   <%= form_for(game, html: form_html_options) do |f| %>
@@ -10,7 +10,7 @@
       <%= f.hidden_field :list_id, class: list_class, value: game.list.id %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <% name_class = "form-control" %>
       <% name_was_invalid = game.errors.include?(:name) %>
 
@@ -34,7 +34,7 @@
       <% end %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <% url_class = "form-control" %>
       <% url_was_invalid = game.errors.include?(:url) %>
 
@@ -70,9 +70,11 @@
         <% end %>
       <% end %>
 
-      <%= f.label :image %>
+      <div class="mb-3">
+        <%= f.label :image, class: "form-label" %>
+        <%= f.file_field :image, class: image_class %>
+      </div>
 
-      <%= f.text_field :image, class: image_class, placeholder: "Enter image" %>
       <% if image_was_invalid %>
         <% game.errors.full_messages_for(:image).each do |message| %>
           <div class="invalid-feedback d-flex">
@@ -82,7 +84,7 @@
       <% end %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <% description_class = "form-control" %>
       <% description_was_invalid = game.errors.include?(:description) %>
 
@@ -106,8 +108,10 @@
       <% end %>
     </div>
 
-    <%= f.button class: "btn btn-outline-secondary btn-block" %>
-    <%= link_to "Cancel", game.list, class: "link-danger" %>
+    <div class="d-grid gap-1">
+      <%= f.button class: "btn btn-primary" %>
+      <%= link_to "Cancel", game.list, class: "link-danger" %>
+    </div>
 
   <% end %>
 </div>

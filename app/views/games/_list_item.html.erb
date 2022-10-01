@@ -4,14 +4,14 @@
   <div class="flex-shrink-0">
     <%#= link_to game.video_trailer, target: "_blank" do %>
     <%# end %>
-    <%= image_tag(game.image, class: "me-3", alt: game.description, width: 75) %>
+    <%= cl_image_tag(game.image, class: "me-3", alt: game.description, width: 75) %>
   </div>
   <div class="flex-grow-1 ms-3">
     <div class="d-flex align-items-center">
       <span class="badge text-bg-secondary"><%= game.position %></span>
       <h5 class="ms-3 me-4 mt-0"><%= game.name %></h5>
-      <%= link_to game, class: "link-primary" do %>
-        <i class="fas fa-info-circle"></i>
+      <%= link_to game.video_trailer, class: "link-primary", target: "_blank" do %>
+        <i class="fas fa-film"></i>
       <% end %>
     </div>
     <p><%= game.description %></p>

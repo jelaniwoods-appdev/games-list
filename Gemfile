@@ -51,6 +51,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'standard', require: false
@@ -73,3 +74,6 @@ group :development do
 end
 
 gem 'acts_as_list', '~> 1.0'
+
+gem 'carrierwave'
+gem 'cloudinary'
