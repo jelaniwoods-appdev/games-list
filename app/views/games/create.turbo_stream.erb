@@ -1,0 +1,2 @@
+<%= turbo_stream.append "games", object: @game, partial: "list_item", as: :game %>
+<%= turbo_stream.replace "new-game", object: @game.list.games.new, partial: "games/list_item_form", as: :game %>

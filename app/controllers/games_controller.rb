@@ -24,7 +24,12 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
-      redirect_to @game, notice: 'Game was successfully created.'
+      respond_to do |format|
+        format.turbo_stream {}
+        format.html {
+          redirect_to @game, notice: 'Game was successfully created.'
+        }
+      end
     else
       render :new, status: :unprocessable_entity
     end

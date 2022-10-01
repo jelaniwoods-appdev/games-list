@@ -48,7 +48,7 @@
 
       <%= f.label :video_trailer %>
 
-      <%= f.text_field :video_trailer, class: url_class, placeholder: "Enter url" %>
+      <%= f.text_field :video_trailer, class: url_class, placeholder: "Enter youtube url" %>
       <% if url_was_invalid %>
         <% game.errors.full_messages_for(:video_trailer).each do |message| %>
           <div class="invalid-feedback d-flex">

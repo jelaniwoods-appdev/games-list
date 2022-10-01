@@ -4,10 +4,10 @@
       <%= list.name %>
     </h2>
     <div class="d-flex align-items-center">
-      <%= link_to edit_list_url(list), class: "btn btn-sm btn-outline-secondary" do %>
+      <%= link_to edit_list_url(list), class: "btn btn-sm btn-outline-secondary disabled" do %>
         <i class="fas fa-edit"></i>
       <% end %>
-      <%= link_to list, method: :delete, data: { confirm: "Do you really want to delete this list?" }, class: "btn btn-sm btn-outline-secondary" do %>
+      <%= link_to list, method: :delete, data: { confirm: "Do you really want to delete this list?" }, class: "btn btn-sm btn-outline-secondary disabled" do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     </div>
@@ -16,9 +16,11 @@
   <div class="card-body">
     <div class="list-group list-group-flush">
       <turbo-frame id="games">
-        <%= render collection: @list.games.order(:position), partial: "games/list_item", as: :game %>
-        <% item = @list.games.new %>
-        <%#= render object: item, partial: "games/list_item_form", as: :game %>
+        <%= render collection: list.games.order(:position), partial: "games/list_item", as: :game %>
+      </turbo-frame>
+      <turbo-frame id="new-game">
+        <% item = list.games.new %>
+        <%= render object: item, partial: "games/list_item_form", as: :game %>
       </turbo-frame>
 
     </div>
