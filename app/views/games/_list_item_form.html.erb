@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(game) do %>
 <% was_validated = game.errors.any? %>
 
-<% form_html_options = { novalidate: true, class: "mb-3" } %>
+<% form_html_options = { novalidate: true, class: "mb-3", data: { turbo_frame: dom_id(game)} } %>
 
 <div class="list-group-item" id="list_item_form">
   <%= form_for(game, html: form_html_options) do |f| %>

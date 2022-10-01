@@ -1,5 +1,40 @@
-<div class="row justify-content-center mb-3">
-  <div class="col-md-8">
-    <%= render object: @game, partial: "card", as: :game %>
+<%= turbo_frame_tag dom_id(@game) do %>
+<div id="<%= dom_id(@game) %>" class="list-group-item d-flex align-items-center justify-content-between">
+
+  <div class="flex-shrink-0">
+    <%= image_tag(@game.image, class: "me-3", alt: @game.description, width: 75) %>
+  </div>
+  <div class="flex-grow-1 ms-3">
+    <div class="d-flex align-items-center">
+      <span class="badge text-bg-secondary"><%= @game.position %></span>
+      <h5 class="ms-3 me-4 mt-0"><%= @game.name %></h5>
+      <%= link_to @game, class: "link-primary" do %>
+        <i class="fas fa-info-circle"></i>
+      <% end %>
+    </div>
+    <p><%= @game.description %></p>
+  </div>
+  <div>
+    <%= link_to edit_game_path(@game), class: "link-success d-block" do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+    <%= link_to @game, data: { "turbo-method": :delete, confirm: "Do you really want to delete this item?" }, class: "link-danger" do %>
+      <i class="fas fa-times"></i>
+    <% end %>
+  </div>
+
+  <div class="ps-2 d-block">
+    <% unless @game.first? %>
+      <%= link_to move_up_game_path(@game), data: { 'turbo-method': :patch }, class: "text-secondary d-block", style: "font-size: 1.3em;", "data-toggle": "collapse", role: "button", "aria-expanded": false do %>
+        <i class="fas fa-caret-up"></i>
+      <% end %>
+    <% end %>
+
+    <% unless @game.last? %>
+      <%= link_to move_down_game_path(@game), data: { 'turbo-method': :patch }, class: "text-secondary d-block", style: "font-size: 1.3em;", "data-toggle": "collapse", role: "button", "aria-expanded": false do %>
+        <i class="fas fa-caret-down"></i>
+      <% end %>
+    <% end %>
   </div>
 </div>
+<% end %>
