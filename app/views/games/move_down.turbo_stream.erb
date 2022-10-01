@@ -1,3 +1,2 @@
 <%= turbo_stream.replace "games", partial: "games_data_frame" %>
 <%= turbo_stream.append "games", collection: @list.games.order(:position), partial: "list_item", as: :game %>
-<%= turbo_stream.append "games", object: @list.games.new, partial: "games/list_item_form", as: :game %>

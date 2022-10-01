@@ -63,7 +63,12 @@ class GamesController < ApplicationController
   # DELETE /games/1
   def destroy
     @game.destroy
-    redirect_to games_url, notice: 'Game was successfully destroyed.'
+    respond_to do |format|
+      format.turbo_stream {}
+      format.html{
+        redirect_to games_url, notice: 'Game was successfully destroyed.'
+      }
+    end
   end
 
   private

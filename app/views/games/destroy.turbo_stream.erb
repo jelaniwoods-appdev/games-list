@@ -1,0 +1,2 @@
+<%= turbo_stream.remove dom_id(@game) %>
+<%= turbo_stream.append "games", collection: @game.list.games.order(:position), partial: "list_item", as: :game %>
